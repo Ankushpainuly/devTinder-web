@@ -22,7 +22,7 @@ const Body = () => {
        return navigate("/login");
       }
       
-      console.log(err);
+     
     }
   }
 
