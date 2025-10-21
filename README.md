@@ -30,3 +30,5 @@
     - New Page - See all my connections
     - New Page - See all my connection requests
     - Feature - Accept/Reject connection request
+    - Send/Ignore the user card from the feed
+    - Sign Up new user
