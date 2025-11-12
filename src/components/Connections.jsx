@@ -32,8 +32,7 @@ const Connections = () => {
       <div className="font-bold text-white text-3xl ">Connections</div>
 
       {connections.map((connection) => {
-        const {_id, firstName, lastName, photoUrl, age, gender, about } =
-          connection;
+        const {_id, firstName, lastName, photoUrl, age, gender, about } =connection;
 
         return (
           <div key={_id} className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">

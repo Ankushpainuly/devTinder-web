@@ -18,9 +18,9 @@ const Body = () => {
       dispatch(addUser(res.data));
     }catch(err){
       //if user is not login redirect to login page
-      if(err.status === 401){
+      
        return navigate("/login");
-      }
+      
       
      
     }
