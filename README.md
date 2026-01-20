@@ -37,7 +37,7 @@
     Body NavBar Route=/ => Feed Route=/login => Login Route=/connetions => Connections Router=/profile => Profile
 
 
-    # Deployment
+# Deployment
 
     - Signup on AWS 
     - Launch instance
@@ -61,14 +61,18 @@
         - pm2 start npm --name "devTinder-backend" -- start
         - pm2 logs
         - pm2 list, pm2 flush <name> , pm2 stop <name>, pm2 delete <name>
-        - config nginx - /etc/nginx/sites-available/default
+        - config nginx - sudo nano /etc/nginx/sites-available/default {add these v see down v}
         - restart nginx - sudo systemctl restart nginx
         - Modify the BASEURL in frontend project to "/api"
+        - npm pull in terminal in frontend
+        - npm build 
+        - copy dist in /var/www/html/
 
 
 
-    # Ngxinx config:
-    
+
+# Ngxinx config:
+
     Frontend = http://43.204.96.49/
     Backend = http://43.204.96.49:7777/
 
@@ -89,3 +93,44 @@
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
+
+
+
+
+# Addding a custom Domain name
+
+    - purchased domain name from godaddy
+    - signup on cloudflare & add a new domain name
+    - change the nameservers on godaddy and point it to cloudflare
+    - wait for sometime till your nameservers are updated ~15 minutes
+    - DNS record: A devtinder.in 43.204.96.49
+    - Enable SSL for website 
+
+
+    # Sending Emails via SES
+    - Create a IAM user
+    - Give Access to AmazonSESFullAccess
+    - Amazon SES: Create an Identity
+    - Verify your domain name
+    - Verify an email address identity
+    - Install AWS SDK - v3 
+    - Code Example https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/ses#code-examples
+    - Setup SesClient
+    - Access Credentials should be created in IAm under SecurityCredentials Tab
+    - Add the credentials to the env file
+    - Write code for SESClient
+    - Write code for Sending email address
+    - Make the email dynamic by passing more params to the run function
+
+
+# Scheduling cron jobs in NodeJS
+- Installing node-cron
+- Learning about cron expressions syntax - crontab.guru
+- Schedule a job
+- date-fns
+- Find all the unique  email Id who have got connection Request in previous day
+- Send Email
+- Explore queue mechanim to send bulk emails
+- Amazon SES Bulk Emails
+- Make sendEmail function dynamic
+- bee-queue & bull npm packages
