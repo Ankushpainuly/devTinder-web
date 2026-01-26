@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar from './NavBar'
 import { Outlet, useNavigate } from 'react-router-dom'
 import Footer from './Footer'
@@ -11,6 +11,7 @@ const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store)=>store.user);
+  const [loading,setLoading] = useState(true);
 
   const fetchUser = async()=>{
     try{
@@ -20,9 +21,8 @@ const Body = () => {
       //if user is not login redirect to login page
       
        return navigate("/login");
-      
-      
-     
+    }finally{
+      setLoading(false);
     }
   }
 
@@ -31,8 +31,14 @@ const Body = () => {
     if(!user){
 
       fetchUser();
+    }else{
+      setLoading(false)
     }
   },[]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
